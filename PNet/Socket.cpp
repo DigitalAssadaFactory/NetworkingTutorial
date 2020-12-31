@@ -265,9 +265,9 @@ namespace PNet {
 
 	PResult Socket::SetBlocking(bool isBlocking)
 	{
-		unsigned long isTrue = 1;
-		unsigned long isFalse = 0;
-		int result = ioctlsocket(handle, FIONBIO, isBlocking ? &isTrue : &isFalse);
+		unsigned long nonBlocking = 1;
+		unsigned long blocking = 0;
+		int result = ioctlsocket(handle, FIONBIO, isBlocking ? &blocking : &nonBlocking);
 		if (result == SOCKET_ERROR)
 		{
 			int error = WSAGetLastError();
