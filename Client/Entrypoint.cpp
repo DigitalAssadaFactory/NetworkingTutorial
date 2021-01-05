@@ -34,16 +34,23 @@ int main() {
 			std::thread t(Run, &client);
 
 			std::string msg = "";
-			std::cin >> msg;
-			if (msg != "")
+			while (true)
 			{
-				if (UCString(msg) == "LOGOUT") client.Disconnect();
-				else
+				std::getline(std::cin, msg);
+				if (msg != "")
 				{
-					std::shared_ptr<Packet> pack = std::make_shared<Packet>(PacketType::PT_ChatMessage);
-					*pack << msg;
-					client.connection.pm_outgoing.Append(pack);
-					msg = "";
+					if (UCString(msg) == "LOGOUT")
+					{
+						client.Disconnect();
+						break;
+					}
+					else
+					{
+						std::shared_ptr<Packet> pack = std::make_shared<Packet>(PacketType::PT_ChatMessage);
+						*pack << msg;
+						client.connection.pm_outgoing.Append(pack);
+						msg = "";
+					}
 				}
 			}
 			t.join();
