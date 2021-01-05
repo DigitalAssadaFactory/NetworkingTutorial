@@ -147,25 +147,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="IPEndpoint.h" />
     <ClInclude Include="IPVersion.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="PacketException.h" />
+    <ClInclude Include="PacketManager.h" />
     <ClInclude Include="PacketType.h" />
     <ClInclude Include="PResult.h" />
+    <ClInclude Include="Server.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketHandle.h" />
     <ClInclude Include="SocketOptions.h" />
+    <ClInclude Include="TCPConnection.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="IPEndpoint.cpp" />
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="PacketManager.cpp" />
+    <ClCompile Include="Server.cpp" />
     <ClCompile Include="Socket.cpp" />
+    <ClCompile Include="TCPConnection.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

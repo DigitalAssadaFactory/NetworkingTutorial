@@ -17,6 +17,9 @@ namespace PNet {
 			{
 				hostname = ip;
 				ip_string = ip;
+				Helpers::trim(hostname);
+				Helpers::trim(ip_string);
+
 				ipVersion = IPVersion::IPv4;
 				ip_bytes.resize(sizeof(ULONG));
 				memcpy(ip_bytes.data(), &addr.S_un.S_addr, sizeof(ULONG));
@@ -35,6 +38,9 @@ namespace PNet {
 			ip_string.resize(16);
 			inet_ntop(AF_INET, &hostaddr->sin_addr, &ip_string[0], 16);
 			hostname = ip;
+
+			Helpers::trim(hostname);
+			Helpers::trim(ip_string);
 
 			ULONG ip_ulong = hostaddr->sin_addr.S_un.S_addr;
 			ip_bytes.resize(sizeof(ULONG));
@@ -55,6 +61,9 @@ namespace PNet {
 
 			hostname = ip;
 			ip_string = ip;
+			Helpers::trim(hostname);
+			Helpers::trim(ip_string);
+
 			ipVersion = IPVersion::IPv6;
 			ip_bytes.resize(16);
 			memcpy(ip_bytes.data(), &addr6.u, 16);
@@ -72,6 +81,8 @@ namespace PNet {
 			ip_string.resize(46);
 			inet_ntop(AF_INET6, &hostaddr6->sin6_addr, &ip_string[0], 46);
 			hostname = ip;
+			Helpers::trim(hostname);
+			Helpers::trim(ip_string);
 
 			ip_bytes.resize(16);
 			memcpy(ip_bytes.data(), &hostaddr6->sin6_addr, 16);
@@ -109,6 +120,8 @@ namespace PNet {
 			inet_ntop(AF_INET6, &addr6->sin6_addr, &ip_string[0], 46);
 			hostname = ip_string;
 		}
+		Helpers::trim(hostname);
+		Helpers::trim(ip_string);
 	}
 
 	void IPEndpoint::Print()

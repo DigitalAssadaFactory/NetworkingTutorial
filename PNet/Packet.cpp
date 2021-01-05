@@ -33,9 +33,6 @@ namespace PNet {
 
 	PacketType Packet::GetPacketType()
 	{
-		/*uint16_t temp;
-		memcpy(&temp, buffer.data(), sizeof(temp));
-		return (PacketType)ntohs(temp);*/
 		PacketType* packetTypePtr = reinterpret_cast<PacketType*>(&buffer[0]);
 		return static_cast<PacketType>(ntohs((uint16_t)*packetTypePtr));
 	}
@@ -72,7 +69,6 @@ namespace PNet {
 		*this >> stringSize;
 
 		if(extractionOffset + stringSize > buffer.size())
-
 
 		data.resize(stringSize);
 		data.assign(&buffer[extractionOffset], stringSize);

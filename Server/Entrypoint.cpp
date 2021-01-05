@@ -1,17 +1,26 @@
-#include "Server.h"
+#include "MyServer.h"
 
 
-using namespace PNet;
+
 int main() {
-	Server server;
-	if (server.Init(IPEndpoint("::", 6112)))
+
+	if (PNet::Network::Init())
 	{
-		while(true)
+		std::cout << "Network successfully initialized.\n";
+		MyServer server;
+		if (server.Init("::", 6112))
 		{
-			server.Frame();
+			while (true)
+			{
+				server.Frame();
+			}
 		}
+		PNet::Network::Kill();
 	}
-	Network::Kill();
+	else
+	{
+		std::cout << "Failet to init the Network.\n";
+	}
 	system("pause");
 	return 0;
 }
